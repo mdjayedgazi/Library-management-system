@@ -1,46 +1,31 @@
+import { useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router'
+import type { NavbarProps } from '../type.ts'
 
-import { useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router';
-import type { NavbarProps } from '../type.ts';
+export default function Navbar({ isAuthenticated, user, onLogout }: NavbarProps) {
+  const [isOpen, setIsOpen] = useState(false)
+  const { pathname } = useLocation()
 
-
-export default function Navbar({
-                                 isAuthenticated,
-                                 user,
-                                 onLogout,
-                               }: NavbarProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const { pathname } = useLocation();
-
-  const isAuthPage =
-    pathname === '/login' || pathname === '/register';
+  const isAuthPage = pathname === '/login' || pathname === '/register'
 
   const avatarLetter =
-    user?.name?.trim().charAt(0).toUpperCase() ||
-    user?.email?.trim().charAt(0).toUpperCase() ||
-    'U';
+    user?.name?.trim().charAt(0).toUpperCase() || user?.email?.trim().charAt(0).toUpperCase() || 'U'
 
   const handleLogout = () => {
-    setIsOpen(false);
-    void onLogout();
-  };
+    setIsOpen(false)
+    void onLogout()
+  }
 
   const activeLink = ({ isActive }: { isActive: boolean }) =>
     `rounded-lg px-4 py-2 text-[13px] font-medium transition-colors ${
-      isActive
-        ? 'bg-white/8 text-white'
-        : 'text-zinc-400 hover:bg-white/5 hover:text-white'
-    }`;
+      isActive ? 'bg-white/8 text-white' : 'text-zinc-400 hover:bg-white/5 hover:text-white'
+    }`
 
   const UserProfile = () => (
     <div className="flex items-center gap-2.5">
       <div className="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/15 bg-white/10 text-sm font-semibold text-white">
         {user?.image ? (
-          <img
-            src={user.image}
-            alt="User profile"
-            className="size-full object-cover"
-          />
+          <img src={user.image} alt="User profile" className="size-full object-cover" />
         ) : (
           avatarLetter
         )}
@@ -50,7 +35,7 @@ export default function Navbar({
         {user?.name || user?.email || 'My Account'}
       </span>
     </div>
-  );
+  )
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/8 bg-[#09090b]/90 backdrop-blur-xl">
@@ -288,5 +273,5 @@ export default function Navbar({
         </div>
       </div>
     </header>
-  );
+  )
 }

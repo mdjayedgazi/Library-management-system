@@ -12,13 +12,13 @@ export interface Book {
 }
 
 export type NavbarUser = {
-  name?: string | null;
-  email?: string | null;
-  image?: string | null;
-};
+  name?: string | null
+  email?: string | null
+  image?: string | null
+}
 
 export type NavbarProps = {
-  isAuthenticated: boolean;
-  user: NavbarUser | null;
-  onLogout: () => void | Promise<void>;
-};
+  isAuthenticated: boolean
+  user: NavbarUser | null
+  onLogout: () => void | Promise<void>
+}

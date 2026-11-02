@@ -17,12 +17,12 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 
 def create_access_token(
-    username: str,
+    email: str,
     user_id: int,
     role: str,
 ) -> str:
     data = {
-        "sub": username,
+        "sub": email,
         "id": user_id,
         "role": role,
         "exp": datetime.now(UTC)

@@ -7,7 +7,7 @@ from app.models.user import Role
 class UserResponse(SQLModel):
     first_name: str
     last_name: str
-    username: str
+    username: str | None = None
     email: EmailStr
     role: Role
     is_active: bool

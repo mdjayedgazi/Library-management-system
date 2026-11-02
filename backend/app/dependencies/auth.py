@@ -30,16 +30,16 @@ async def get_current_user(
             settings.SECRET_KEY,
             algorithms=[settings.ALGORITHM],
         )
-        username = payload.get("sub")
+        email = payload.get("sub")
 
-        if username is None:
+        if email is None:
             raise credentials_exception
 
     except InvalidTokenError:
         raise credentials_exception
 
-    result = await db.execute(select(User).where(User.username == username))
-    user = result.scalars().first()
+    result = await db.exec(select(User).where(User.email == email))
+    user = result.first()
 
     if user is None:
         raise credentials_exception

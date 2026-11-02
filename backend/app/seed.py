@@ -465,27 +465,27 @@ BOOKS: list[tuple[str, str, BookCategory, float, int, str, str]] = [
 ]
 
 
-# (book title, username, issue_date, due_date, return_date, fine_amount, fine_paid)
+# (book title, email, issue_date, due_date, return_date, fine_amount, fine_paid)
 ISSUE_RECORDS: list[
     tuple[str, str, datetime, datetime, datetime | None, float, bool]
 ] = [
-    ("Clean Code", "alice", _dt(2026, 10, 20), _dt(2026, 11, 3), None, 0.0, False),
+    ("Clean Code", "alice@example.com", _dt(2026, 10, 20), _dt(2026, 11, 3), None, 0.0, False),
     (
         "Thinking, Fast and Slow",
-        "bob",
+        "bob@example.com",
         _dt(2026, 10, 18),
         _dt(2026, 11, 1),
         None,
         0.0,
         False,
     ),
-    ("Atomic Habits", "carol", _dt(2026, 10, 12), _dt(2026, 10, 26), None, 0.0, False),
-    ("Cosmos", "david", _dt(2026, 10, 22), _dt(2026, 11, 5), None, 0.0, False),
-    ("The Lean Startup", "farhan", _dt(2026, 10, 15), _dt(2026, 10, 29), None, 0.0, False),
-    ("Educated", "grace", _dt(2026, 10, 25), _dt(2026, 11, 8), None, 0.0, False),
+    ("Atomic Habits", "carol@example.com", _dt(2026, 10, 12), _dt(2026, 10, 26), None, 0.0, False),
+    ("Cosmos", "david@example.com", _dt(2026, 10, 22), _dt(2026, 11, 5), None, 0.0, False),
+    ("The Lean Startup", "farhan@example.com", _dt(2026, 10, 15), _dt(2026, 10, 29), None, 0.0, False),
+    ("Educated", "grace@example.com", _dt(2026, 10, 25), _dt(2026, 11, 8), None, 0.0, False),
     (
         "The Joy of x",
-        "hassan",
+        "hassan@example.com",
         _dt(2026, 10, 24),
         _dt(2026, 11, 7),
         None,
@@ -494,18 +494,18 @@ ISSUE_RECORDS: list[
     ),
     (
         "Pride and Prejudice",
-        "isabel",
+        "isabel@example.com",
         _dt(2026, 10, 19),
         _dt(2026, 11, 2),
         None,
         0.0,
         False,
     ),
-    ("Sapiens: A Brief History of Humankind", "jonas", _dt(2026, 10, 8), _dt(2026, 10, 22), None, 0.0, False),
-    ("1984", "keira", _dt(2026, 10, 26), _dt(2026, 11, 9), None, 0.0, False),
+    ("Sapiens: A Brief History of Humankind", "jonas@example.com", _dt(2026, 10, 8), _dt(2026, 10, 22), None, 0.0, False),
+    ("1984", "keira@example.com", _dt(2026, 10, 26), _dt(2026, 11, 9), None, 0.0, False),
     (
         "The Great Gatsby",
-        "alice",
+        "alice@example.com",
         _dt(2026, 9, 1),
         _dt(2026, 9, 15),
         _dt(2026, 9, 14),
@@ -514,7 +514,7 @@ ISSUE_RECORDS: list[
     ),
     (
         "To Kill a Mockingbird",
-        "bob",
+        "bob@example.com",
         _dt(2026, 9, 5),
         _dt(2026, 9, 19),
         _dt(2026, 9, 25),
@@ -523,7 +523,7 @@ ISSUE_RECORDS: list[
     ),
     (
         "Deep Work",
-        "carol",
+        "carol@example.com",
         _dt(2026, 9, 10),
         _dt(2026, 9, 24),
         _dt(2026, 10, 2),
@@ -532,7 +532,7 @@ ISSUE_RECORDS: list[
     ),
     (
         "The Alchemist",
-        "david",
+        "david@example.com",
         _dt(2026, 9, 12),
         _dt(2026, 9, 26),
         _dt(2026, 9, 26),
@@ -541,7 +541,7 @@ ISSUE_RECORDS: list[
     ),
     (
         "Steve Jobs",
-        "emma",
+        "emma@example.com",
         _dt(2026, 9, 20),
         _dt(2026, 10, 4),
         _dt(2026, 10, 9),
@@ -551,18 +551,18 @@ ISSUE_RECORDS: list[
 ]
 
 
-# (book title, username, reservation_date, status)
+# (book title, email, reservation_date, status)
 RESERVATIONS: list[tuple[str, str, datetime, Status]] = [
-    ("Man's Search for Meaning", "emma", _dt(2026, 10, 28), Status.PENDING),
-    ("Atomic Habits", "bob", _dt(2026, 10, 29), Status.PENDING),
-    ("Python Crash Course", "carol", _dt(2026, 10, 30), Status.PENDING),
-    ("Clean Code", "david", _dt(2026, 10, 27), Status.PENDING),
-    ("How Not to Be Wrong", "isabel", _dt(2026, 10, 31), Status.PENDING),
-    ("Educated", "alice", _dt(2026, 10, 20), Status.APPROVED),
-    ("Sapiens: A Brief History of Humankind", "emma", _dt(2026, 10, 22), Status.APPROVED),
-    ("The Pragmatic Programmer", "farhan", _dt(2026, 10, 21), Status.APPROVED),
-    ("Influence: The Psychology of Persuasion", "grace", _dt(2026, 10, 18), Status.REJECTED),
-    ("Zero to One", "hassan", _dt(2026, 10, 19), Status.REJECTED),
+    ("Man's Search for Meaning", "emma@example.com", _dt(2026, 10, 28), Status.PENDING),
+    ("Atomic Habits", "bob@example.com", _dt(2026, 10, 29), Status.PENDING),
+    ("Python Crash Course", "carol@example.com", _dt(2026, 10, 30), Status.PENDING),
+    ("Clean Code", "david@example.com", _dt(2026, 10, 27), Status.PENDING),
+    ("How Not to Be Wrong", "isabel@example.com", _dt(2026, 10, 31), Status.PENDING),
+    ("Educated", "alice@example.com", _dt(2026, 10, 20), Status.APPROVED),
+    ("Sapiens: A Brief History of Humankind", "emma@example.com", _dt(2026, 10, 22), Status.APPROVED),
+    ("The Pragmatic Programmer", "farhan@example.com", _dt(2026, 10, 21), Status.APPROVED),
+    ("Influence: The Psychology of Persuasion", "grace@example.com", _dt(2026, 10, 18), Status.REJECTED),
+    ("Zero to One", "hassan@example.com", _dt(2026, 10, 19), Status.REJECTED),
 ]
 
 
@@ -580,16 +580,10 @@ def _is_local(url_text: str) -> bool:
 
 async def _get_or_create_user(session: Any, spec: dict[str, Any]) -> tuple[User, bool]:
     existing = (
-        await session.exec(select(User).where(User.username == spec["username"]))
+        await session.exec(select(User).where(User.email == spec["email"]))
     ).first()
     if existing is not None:
         return existing, False
-
-    email_taken = (
-        await session.exec(select(User).where(User.email == spec["email"]))
-    ).first()
-    if email_taken is not None:
-        return email_taken, False
 
     # Use role-specific password from environment variables
     if spec["role"] == Role.LIBRARIAN:
@@ -605,7 +599,7 @@ async def _get_or_create_user(session: Any, spec: dict[str, Any]) -> tuple[User,
         )
         print(
             f"Error: {env_var} environment variable is not set. "
-            f"Cannot create user '{spec['username']}'.",
+            f"Cannot create user '{spec['email']}'.",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -670,7 +664,7 @@ async def seed(dry_run: bool = False) -> dict[str, int]:
         users: dict[str, User] = {}
         for spec in USERS:
             user, created = await _get_or_create_user(session, spec)
-            users[spec["username"]] = user
+            users[spec["email"]] = user
             stats["users_created" if created else "skipped"] += 1
 
         books: dict[str, Book] = {}
@@ -681,7 +675,7 @@ async def seed(dry_run: bool = False) -> dict[str, int]:
 
         for (
             title,
-            username,
+            email,
             issue_date,
             due_date,
             return_date,
@@ -689,7 +683,7 @@ async def seed(dry_run: bool = False) -> dict[str, int]:
             fine_paid,
         ) in ISSUE_RECORDS:
             book = books[title]
-            user = users[username]
+            user = users[email]
 
             existing = (
                 await session.exec(
@@ -721,9 +715,9 @@ async def seed(dry_run: bool = False) -> dict[str, int]:
                 book.available_copies = max(0, book.available_copies - 1)
             stats["issues_created"] += 1
 
-        for title, username, reservation_date, reservation_status in RESERVATIONS:
+        for title, email, reservation_date, reservation_status in RESERVATIONS:
             book = books[title]
-            user = users[username]
+            user = users[email]
 
             existing = (
                 await session.exec(
@@ -799,8 +793,8 @@ def main() -> int:
     print("\nSeed accounts use passwords from environment variables:")
     print("  Librarian accounts: SEED_LIBRARIAN_PASSWORD")
     print("  Member accounts:    SEED_MEMBER_PASSWORD")
-    print("Librarian login: librarian")
-    print("Member login:    alice")
+    print("Librarian login: librarian@library.dev")
+    print("Member login:    alice@example.com")
     return 0
 
 

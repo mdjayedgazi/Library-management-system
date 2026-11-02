@@ -2,7 +2,6 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
-from sqlalchemy import or_
 from sqlalchemy.exc import IntegrityError
 from sqlmodel import select
 
@@ -32,28 +31,25 @@ async def register_user(
     new_user: UserCreate,
     db: db_Dependency,
 ):
-    email = new_user.email.lower()
+    email = new_user.email.strip().lower()
 
-    statement = select(User).where(
-        or_(
-            User.username == new_user.username,
-            User.email == email,
-        )
-    )
-
+    statement = select(User).where(User.email == email)
     existing_user = (await db.exec(statement)).first()
 
     if existing_user:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
-            detail="Username or email already exists",
+            detail="Email already registered",
         )
+
+    # Generate a username from the email local part for backward compatibility
+    username = email.split("@")[0]
 
     user = User(
         first_name=new_user.first_name,
         last_name=new_user.last_name,
         email=email,
-        username=new_user.username,
+        username=username,
         hash_password=get_password_hash(new_user.password),
         role=Role.MEMBER,
     )
@@ -67,7 +63,7 @@ async def register_user(
         await db.rollback()
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
-            detail="Username or email already exists",
+            detail="Email already registered",
         ) from exc
 
     return user
@@ -78,8 +74,11 @@ async def login_user(
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
     db: db_Dependency,
 ):
-    statement = select(User).where(User.username == form_data.username)
+    # OAuth2PasswordRequestForm uses 'username' field per OAuth2 spec,
+    # but we treat it as the user's email address
+    email = form_data.username.strip().lower()
 
+    statement = select(User).where(User.email == email)
     user = (await db.exec(statement)).first()
 
     if user is None or not verify_password(
@@ -88,12 +87,12 @@ async def login_user(
     ):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
+            detail="Incorrect email or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
 
     token = create_access_token(
-        username=user.username,
+        email=user.email,
         user_id=user.id,
         role=user.role.value,
     )
@@ -128,7 +127,7 @@ async def update_user(
         await db.rollback()
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
-            detail="Username or email already exists",
+            detail="Email already exists",
         ) from exc
 
     return current_user
