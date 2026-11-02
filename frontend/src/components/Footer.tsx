@@ -2,14 +2,14 @@ import { Link } from 'react-router'
 
 export default function Footer() {
   return (
-    <footer className="border-t p border-white/8 bg-[#09090b] text-zinc-400">
+    <footer className="border-t p border-white/8 bg-[#09090b] text-zinc-400 mt-5">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         {/* Main footer */}
         <div className="grid grid-cols-1 gap-12 py-14 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-16 lg:py-20">
           {/* Brand section */}
           <div className="max-w-sm">
             <Link to="/" className="group inline-flex items-center gap-3">
-              <span className="flex size-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-white transition-colors group-hover:bg-white/[0.10]">
+              <span className="flex size-10 items-center justify-center rounded-xl border border-white/10 bg-white/6 text-white transition-colors group-hover:bg-white/10">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
