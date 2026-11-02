@@ -127,7 +127,7 @@ const Login = ({ onLogin }: LoginProps) => {
           <p className="text-sm text-base-content/60">
             Don't have an account?{' '}
             <Link
-              to="/register"
+              to="/signup"
               className="font-semibold text-base-content underline-offset-4 hover:underline"
             >
               Create an account
